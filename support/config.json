@@ -1,0 +1,12 @@
+{
+"DB_CON":
+	[
+		{	
+			"app":"db",
+			"host":"localhost",
+			"username":"root",
+			"password":"",
+			"database":""
+		}
+	]
+}
