@@ -67,7 +67,20 @@ function stringFromArray($DATA = array(), $TYPE = false){
 	return $str;
 }
 
+function arrayToString($DATA = array(), $break = ","){
+	$str ="";
+		$END = count($DATA);
+		for ($i=0; $i < $END; $i++) { 			
+				if($i != ($END-1)){					
+					$str .= $DATA[$i];
+					$str .= $break;
+				}else{					
+					$str .= $DATA[$i];							
+				}
+		}
+		return $str;	
 
+}
 
 // For print colums and values for command string from Array
 function printColStyle($COL, $TABLE, $CONDITION, $STYLE="txt"){
@@ -190,7 +203,8 @@ function findBeforeDelete($TABLE,$ID){
 
 
 //Add Data Into Table
-function addData($TABLE, $VALS = array(), $DEBUG=true){
+function addData($TABLE, $VALS = array()){	
+	$DEBUG = getConInfo("debug", __DIR__.$_SESSION['lib_prefix']."config.json");
 	global $con;
 	$totalCols = count(getCols($TABLE));
 	$totalVals = count($VALS);
@@ -244,7 +258,7 @@ function getCols($TABLE,$ARRAY = true){
 	$cols = array();
 	$cmdStr = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = \"$TABLE\" ORDER BY ORDINAL_POSITION";
 	$run = mysqli_query($con, $cmdStr);
-	foreach ($run as $value) {
+	foreach ($run as $value) {		
 		if($value["COLUMN_NAME"] != "id"){
 			array_push($cols, $value["COLUMN_NAME"]);
 		}		
@@ -292,72 +306,6 @@ function printInScript($DATA){
 	echo '</script>';
 }
 
-//For updating data to config db
-function updateData($TABLE, $COLS = array(), $VALS = array(), $CONDITION){
-	global $con;
-	$totalCols = count($COLS);
-	$totalVals = count($VALS);
-	if ($totalVals == $totalCols) {
-		$cmdStr  = "UPDATE `".$TABLE."` SET ";
-		$cmdStr .= getKeyValue($COLS, $VALS);
-		$cmdStr .= " WHERE ".$CONDITION;
-		 $run = mysqli_query($con, $cmdStr);
-		 if($run){
-		 	return true;
-		 }else{
-		 	return false;
-		 }
-	}else{		
-		return false;
-	}
-	
-
-}
-
-
-
-
-//Login to System
-function login($USERNAME, $PASSWORD,$TABLE="users"){
-	global $con;
-	$cmdStr = "SELECT * FROM `$TABLE` WHERE `username` = \"$USERNAME\" AND `password` = \"$PASSWORD\" ";
-	$run = mysqli_query($con, $cmdStr);
-	$count = mysqli_num_rows($run);
-	if($count == 1){
-		while($row = mysqli_fetch_array($run)){
-				//Session			
-				//logMe("Login Success! from: read");
-				$_SESSION['app_user'] = $row['username'];
-				$_SESSION['role'] = $row['role'];
-				$_SESSION['app_name'] = $row['nickname'];
-				$_SESSION['token'] = $row['username']."_".rand(0,10000);
-				setLog("Login! Success");
-				//User priviliges	
-				switch ($row['role']) {
-					case 'TP':
-						$_SESSION['menu'] = array(1,2,3,7,10,12,15);
-						break;
-					case 'TL':
-						$_SESSION['menu'] = array(1,2,3,4);
-						break;
-					case 'ADMIN':
-						$_SESSION['menu'] = array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
-						break;
-					default:
-						$_SESSION['menu'] = array(1,2,3);
-						break;
-
-				}
-
-			}
-		return true; 
-	}else{
-		setLog("Login! Failed");
-		//logMe("Login Fail! from: read");
-		return false;
-	}	
-
-}
 
 
 

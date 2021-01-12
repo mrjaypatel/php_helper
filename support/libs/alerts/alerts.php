@@ -9,7 +9,6 @@ require_once __DIR__.$PATH_PREFIX."callme.php";
 */
 
 
-
 //Message Alert
 function msg($message, $redirect="#", $ALERT_TYPE = "js", $SCRIPT = true  ,$TYPE = "info"){	
 	switch ($ALERT_TYPE) {
@@ -26,7 +25,7 @@ function msg($message, $redirect="#", $ALERT_TYPE = "js", $SCRIPT = true  ,$TYPE
 }
 
 //Child API of msg for Javascript Alert
-function jsMsg( $message, $SCRIPT, $redirect){
+function jsMsg($message, $SCRIPT, $redirect){
 	$MESSAGE_BODY = 'alert("'.$message.'");';
 	if ($SCRIPT) {
 		printInScript($MESSAGE_BODY);								    
@@ -99,7 +98,6 @@ function notifyMsg($message, $SCRIPT, $redirect, $TYPE){
 		}
 	
 }
-
 
 
 

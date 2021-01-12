@@ -6,7 +6,27 @@
 			"host":"localhost",
 			"username":"root",
 			"password":"",
-			"database":""
+			"database":"test",
+			"debug": true
+		}
+	],
+"bootstrap":
+	[
+		{
+			"app":"style",
+			"css":[
+				"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+				"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css",
+				"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
+				"https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.css"
+			],
+			"js":[
+				"https://code.jquery.com/jquery-3.2.1.slim.min.js",
+				"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js",
+				"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
+				"https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"
+
+			]
 		}
 	]
 }

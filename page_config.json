@@ -1,0 +1,20 @@
+{
+    "PAGE_CONFIG":
+        [
+            {
+                "page":"index.php",
+                "title":"Home",
+                "description":"",
+                "keywords":"",
+                "author":""
+            },
+            {
+                "page":"blog-detail.php",
+                "title":"Blog Detail  ",
+                "description":"",
+                "keywords":"",
+                "author":""
+            }
+    
+        ]
+    }
