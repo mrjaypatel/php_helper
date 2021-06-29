@@ -42,6 +42,12 @@ Full EXAMPLE
             @session_start();
             $_SESSION['from'] = "3";
             require_once __DIR__."/../../../support/callme.php";
+For Single Page:
+
+path public_html/index.php
+           @session_start();
+           $_SESSION['from'] = "1";
+           require_once __DIR__."/support/callme.php";
 
 
  Call this script
